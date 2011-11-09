@@ -28,7 +28,7 @@ def edit(request, itemId=0, modelname='anime', field=None, ajaxSet=True):
         response['text'] = 'You cannot do this.'
     elif modelname not in EDIBLE_LIST and (datetime.now() - request.user.date_joined).days < 15:
         response['text'] = 'You cannot do this now. Please wait for {0} days.'.format(
-                (datetime.now() - request.user.date_joided).days
+                15 - (datetime.now() - request.user.date_joined).days
             )
     else:
         form = None
