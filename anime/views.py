@@ -102,10 +102,9 @@ def search(request, string=None, field=None, order=None, page=0):
 def card(request, animeId=0):
     anime = None
     if not animeId:
-        animeId = randint(1, AnimeItem.objects.count())
         try:
-            anime = AnimeItem.objects.all()[animeId]
-        except:
+            animeId = AnimeItem.objects.order_by('?')[0].id
+        except IndexError:
             return {}
         else:
             #fixme double job
